@@ -1,0 +1,36 @@
+<?php
+header('Content-Type: application/json');
+
+// Function to generate a random 8-digit National ID
+function generateRandomNID() {
+    return mt_rand(10000000, 99999999);
+}
+
+// Function to generate a random Date of Birth before 2005
+function generateRandomDOB() {
+    $year = mt_rand(1900, 2004);
+    $month = str_pad(mt_rand(1, 12), 2, '0', STR_PAD_LEFT);
+    $day = str_pad(mt_rand(1, 28), 2, '0', STR_PAD_LEFT); // Limiting to 28 for simplicity
+    return "$year-$month-$day";
+}
+
+// Input MSISDN from user
+$msisdn = isset($_GET['msisdn']) ? $_GET['msisdn'] : 'Unknown';
+
+// Generate random NID and DOB
+$nid = generateRandomNID();
+$dob = generateRandomDOB();
+
+// Response data
+$response = [
+    "━━━━━━━༻❁༺━━━━━━━",
+    "🫧 Msɪsᴅɴ ➥ $msisdn",
+    "🫧 Nᴀᴛɪᴏɴᴀʟ ID ➥ $nid",
+    "🫧 Dᴀᴛᴇ ᴏғ Bɪʀᴛʜ ➥ $dob",
+    "━━━━━━━━༻❁༺━━━━━━━",
+    "✨ Dᴇᴠᴇʟᴏᴩᴇʀ ➥ ➳ᴹᴿ✿࿐𝙎𝙄𝙔𝘼𝙈➳ᴹᴿ✿࿐"
+];
+
+// Output response in JSON format
+echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+?>
